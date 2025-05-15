@@ -50,6 +50,16 @@
   html {
     @apply scroll-smooth;
   }
+
+  /* Improved textarea experience */
+  textarea {
+    @apply transition-all duration-300;
+  }
+  
+  textarea:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
 }
 
 @layer utilities {
@@ -80,5 +90,9 @@
   
   .glow-blue {
     text-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+  }
+
+  .auto-resize-textarea {
+    overflow-y: hidden;
   }
 }

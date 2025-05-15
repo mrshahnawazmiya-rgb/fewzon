@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
@@ -113,8 +112,8 @@ export function HeroSection() {
         />
       </div>
 
-      <Container className="relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+      <Container className="relative z-10 w-full px-4 sm:px-6 md:px-8">
+        <div className="max-w-5xl mx-auto text-center">
           {/* Early Access Badge */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -160,10 +159,10 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-8"
+            className="mb-8 w-full max-w-4xl mx-auto"
           >
             <div 
-              className="relative p-[2px] rounded-2xl overflow-hidden"
+              className="relative p-[2px] rounded-2xl overflow-hidden group transition-all duration-300"
               onMouseMove={handleMouseMove}
               style={{
                 background: "linear-gradient(90deg, #9b87f5 0%, #33C3F0 50%, #FF4545 100%)",
@@ -188,7 +187,7 @@ export function HeroSection() {
                       <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
                       <div className="w-3 h-3 rounded-full bg-green-400"></div>
                     </div>
-                    <div className="ml-auto text-xs text-white/50">// fewzon_prompt.js</div>
+                    <div className="ml-auto text-xs text-white/50 hidden sm:block">// fewzon_prompt.js</div>
                   </div>
                   
                   <textarea
@@ -203,26 +202,29 @@ const myIdea = {
   description: 'A markdown editor with AI assistant',
   features: ['Collaborative editing', 'Version history', 'Export to PDF']
 };"
-                    rows={9}
-                    className="w-full bg-transparent border-0 p-5 text-lg text-white leading-relaxed font-mono placeholder:text-white/40 focus:ring-0 resize-none"
+                    rows={6}
+                    className="w-full bg-transparent border-0 p-3 sm:p-5 text-base sm:text-lg md:text-xl text-white leading-relaxed font-mono placeholder:text-white/40 focus:ring-0 resize-none scrollbar-none"
                     style={{
                       caretColor: "#9b87f5",
-                      textShadow: isFocused ? "0 0 8px rgba(155, 135, 245, 0.3)" : "none"
+                      textShadow: isFocused ? "0 0 8px rgba(155, 135, 245, 0.3)" : "none",
+                      height: "auto",
+                      minHeight: "160px",
+                      maxHeight: "400px"
                     }}
                   />
                   
-                  <div className="flex items-center justify-between p-4 border-t border-white/10 bg-white/5">
-                    <div>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 sm:p-4 border-t border-white/10 bg-white/5">
+                    <div className="mb-3 sm:mb-0">
                       <Button 
                         variant="ghost" 
                         size="sm"
                         className="text-white/70 hover:text-white hover:bg-white/10"
                       >
-                        <Paperclip className="h-5 w-5 mr-1" /> Attach
+                        <Paperclip className="h-4 w-4 mr-1" /> Attach
                       </Button>
                     </div>
                     
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-2 w-full sm:w-auto">
                       <motion.span
                         animate={isGenerating ? {
                           opacity: [0.5, 1, 0.5],
@@ -231,7 +233,7 @@ const myIdea = {
                           repeat: Infinity,
                           duration: 1.5,
                         } : {}}
-                        className={`px-2.5 py-1 text-sm rounded-full border ${isGenerating ? 'text-green-300 border-green-500/30' : 'text-white/70 border-white/10'}`}
+                        className={`px-2.5 py-1 text-xs sm:text-sm rounded-full border ${isGenerating ? 'text-green-300 border-green-500/30' : 'text-white/70 border-white/10'}`}
                       >
                         {isGenerating ? "Building..." : "Public"}
                       </motion.span>
@@ -239,7 +241,7 @@ const myIdea = {
                       <Button
                         onClick={handleGenerate}
                         disabled={isGenerating}
-                        className="relative bg-gradient-to-r from-bluepill to-redpill hover:opacity-90 overflow-hidden group"
+                        className="relative bg-gradient-to-r from-bluepill to-redpill hover:opacity-90 overflow-hidden group w-full sm:w-auto"
                       >
                         <span className="relative z-10">
                           {isGenerating ? (
@@ -266,8 +268,8 @@ const myIdea = {
             </div>
           </motion.div>
           
-          {/* Quick Start Pills - Similar to Lovable's suggestion pills */}
-          <div className="flex flex-wrap justify-center gap-2">
+          {/* Quick Start Pills - With improved responsiveness */}
+          <div className="flex flex-wrap justify-center gap-2 px-4">
             {pills.map((pill) => (
               <motion.button
                 key={pill.id}
@@ -276,9 +278,9 @@ const myIdea = {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.4 + (pills.indexOf(pill) * 0.1) }}
                 whileHover={{ scale: 1.05, y: -2 }}
-                className="flex items-center px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-sm text-white/80 transition-all"
+                className="flex items-center px-3 sm:px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-xs sm:text-sm text-white/80 transition-all"
               >
-                <span className="mr-2">{pill.icon}</span>
+                <span className="mr-1.5">{pill.icon}</span>
                 {pill.label}
               </motion.button>
             ))}
