@@ -18,14 +18,14 @@ const pills: Pill[] = [
   {
     id: "red",
     name: "Red Pill",
-    description: "Embrace full creative freedom",
-    features: ["Advanced Graphic Editor", "Custom Code", "Animation Studio", "Full Design System"]
+    description: "Startup journey from idea to MVP",
+    features: ["Website Builder", "Marketing Tools", "Graphic Design", "MVP Development"]
   },
   {
     id: "blue",
     name: "Blue Pill",
-    description: "Get started quickly with templates",
-    features: ["Website Builder", "Template Library", "Blog Creator", "SEO Tools"]
+    description: "Job hunting & skill development",
+    features: ["Job Search Tools", "Skill Learning", "Resume Builder", "Interview Prep"]
   }
 ];
 
@@ -160,7 +160,7 @@ export function HeroSection() {
               >
                 <div className="inline-block px-6 py-3 bg-white/10 rounded-lg">
                   <span className="inline-block w-4 h-4 border-2 border-t-redpill border-r-bluepill border-b-redpill border-l-bluepill rounded-full animate-spin mr-2"></span>
-                  Generating your {selectedPill === "red" ? "creative studio" : "website builder"}...
+                  Generating your {selectedPill === "red" ? "startup toolkit" : "job hunting assistant"}...
                 </div>
               </motion.div>
             )}

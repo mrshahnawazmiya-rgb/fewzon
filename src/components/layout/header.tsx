@@ -58,6 +58,12 @@ export function Header() {
               Team
             </a>
             <a
+              href="#blogs"
+              className="text-sm text-white/70 hover:text-white transition-colors"
+            >
+              Blogs
+            </a>
+            <a
               href="#pricing"
               className="text-sm text-white/70 hover:text-white transition-colors"
             >
