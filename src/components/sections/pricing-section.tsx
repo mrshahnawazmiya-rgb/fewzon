@@ -6,6 +6,7 @@ import { FadeIn } from "@/components/animations/fade-in";
 import { AnimatedText } from "@/components/animations/animated-text";
 import { Switch } from "@/components/ui/switch";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface Feature {
   id: string;
@@ -13,6 +14,7 @@ interface Feature {
   description: string;
   price: number;
   includedIn: ("basic" | "pro" | "enterprise")[];
+  category: string;
 }
 
 interface PricingPlan {
@@ -24,41 +26,239 @@ interface PricingPlan {
   highlighted: boolean;
 }
 
+// Extended feature list organized by categories
+const featureCategories = [
+  {
+    id: "website",
+    name: "Website Builder"
+  },
+  {
+    id: "jobs",
+    name: "Job Hunter"
+  },
+  {
+    id: "collaboration",
+    name: "Collaboration"
+  },
+  {
+    id: "learning",
+    name: "Learning Management"
+  },
+  {
+    id: "design",
+    name: "Design & Graphics"
+  },
+  {
+    id: "ai",
+    name: "AI Tools"
+  },
+  {
+    id: "marketing",
+    name: "Marketing & Social Media"
+  },
+  {
+    id: "marketplace",
+    name: "Marketplaces"
+  },
+  {
+    id: "security",
+    name: "Security & Support"
+  }
+];
+
 const features: Feature[] = [
+  // Website Builder Features
   {
     id: "website-builder",
-    name: "Website Builder",
-    description: "Create responsive websites with drag-and-drop",
+    name: "Drag-and-drop Website Builder",
+    description: "Create responsive websites easily",
     price: 9,
-    includedIn: ["basic", "pro", "enterprise"]
+    includedIn: ["basic", "pro", "enterprise"],
+    category: "website"
   },
+  {
+    id: "custom-code",
+    name: "Custom Code Option",
+    description: "HTML, CSS, JavaScript customization",
+    price: 7,
+    includedIn: ["pro", "enterprise"],
+    category: "website"
+  },
+  {
+    id: "templates",
+    name: "Pre-built Website Templates",
+    description: "Professional ready-to-use designs",
+    price: 5,
+    includedIn: ["basic", "pro", "enterprise"],
+    category: "website"
+  },
+  {
+    id: "responsive-design",
+    name: "Responsive Design",
+    description: "Mobile-ready websites",
+    price: 4,
+    includedIn: ["basic", "pro", "enterprise"],
+    category: "website"
+  },
+  
+  // Job Hunter Features
+  {
+    id: "job-scraping",
+    name: "Job Board Scraping",
+    description: "Auto-scrape from multiple job boards",
+    price: 12,
+    includedIn: ["pro", "enterprise"],
+    category: "jobs"
+  },
+  {
+    id: "job-filters",
+    name: "Advanced Job Filters",
+    description: "Filter by role, location, salary, etc.",
+    price: 6,
+    includedIn: ["basic", "pro", "enterprise"],
+    category: "jobs"
+  },
+  {
+    id: "job-tracker",
+    name: "Application Tracker",
+    description: "Track all your job applications",
+    price: 5,
+    includedIn: ["basic", "pro", "enterprise"],
+    category: "jobs"
+  },
+  
+  // Collaboration Features
+  {
+    id: "team-projects",
+    name: "Team Projects",
+    description: "Collaborate with team members",
+    price: 15,
+    includedIn: ["pro", "enterprise"],
+    category: "collaboration"
+  },
+  {
+    id: "real-time-editing",
+    name: "Real-time Editing",
+    description: "Collaborate simultaneously on projects",
+    price: 10,
+    includedIn: ["enterprise"],
+    category: "collaboration"
+  },
+  {
+    id: "version-control",
+    name: "Version Control",
+    description: "Track changes in documents and code",
+    price: 8,
+    includedIn: ["pro", "enterprise"],
+    category: "collaboration"
+  },
+  
+  // Learning Management Features
+  {
+    id: "course-creation",
+    name: "Course Creation",
+    description: "Create courses with videos and quizzes",
+    price: 18,
+    includedIn: ["enterprise"],
+    category: "learning"
+  },
+  {
+    id: "progress-tracking",
+    name: "Learner Progress Tracking",
+    description: "Monitor student progress",
+    price: 7,
+    includedIn: ["pro", "enterprise"],
+    category: "learning"
+  },
+  
+  // Design Features
   {
     id: "graphic-editor",
-    name: "Graphic Editor",
-    description: "Design professional graphics and visuals",
-    price: 12,
-    includedIn: ["pro", "enterprise"]
+    name: "Graphic Design Tools",
+    description: "Professional graphic design capabilities",
+    price: 14,
+    includedIn: ["pro", "enterprise"],
+    category: "design"
   },
   {
-    id: "animation-studio",
-    name: "Animation Studio",
-    description: "Create animated content and interactions",
-    price: 15,
-    includedIn: ["enterprise"]
-  },
-  {
-    id: "blog-tools",
-    name: "Blog Tools",
-    description: "Content management for blogs and articles",
-    price: 7,
-    includedIn: ["basic", "pro", "enterprise"]
-  },
-  {
-    id: "seo-tools",
-    name: "SEO Tools",
-    description: "Optimize your content for search engines",
+    id: "design-templates",
+    name: "Design Templates",
+    description: "Social media, ads, poster templates",
     price: 8,
-    includedIn: ["pro", "enterprise"]
+    includedIn: ["basic", "pro", "enterprise"],
+    category: "design"
+  },
+  
+  // AI Tools
+  {
+    id: "ai-ad-generator",
+    name: "AI Ad Generator",
+    description: "Create ads with AI for various platforms",
+    price: 20,
+    includedIn: ["enterprise"],
+    category: "ai"
+  },
+  {
+    id: "ai-content",
+    name: "AI Content Generation",
+    description: "Generate articles and blog posts",
+    price: 15,
+    includedIn: ["pro", "enterprise"],
+    category: "ai"
+  },
+  
+  // Marketing & Social Media
+  {
+    id: "social-management",
+    name: "Social Media Management",
+    description: "Schedule posts and manage accounts",
+    price: 12,
+    includedIn: ["pro", "enterprise"],
+    category: "marketing"
+  },
+  {
+    id: "analytics",
+    name: "Analytics Dashboard",
+    description: "Track performance across platforms",
+    price: 10,
+    includedIn: ["pro", "enterprise"],
+    category: "marketing"
+  },
+  
+  // Marketplaces
+  {
+    id: "course-marketplace",
+    name: "Course Marketplace",
+    description: "Sell courses to users",
+    price: 25,
+    includedIn: ["enterprise"],
+    category: "marketplace"
+  },
+  {
+    id: "template-marketplace",
+    name: "Template Marketplace",
+    description: "Sell your templates and designs",
+    price: 15,
+    includedIn: ["enterprise"],
+    category: "marketplace"
+  },
+  
+  // Security & Support
+  {
+    id: "security",
+    name: "Advanced Security",
+    description: "Data encryption and 2FA",
+    price: 8,
+    includedIn: ["pro", "enterprise"],
+    category: "security"
+  },
+  {
+    id: "support",
+    name: "Priority Support",
+    description: "Live chat and priority assistance",
+    price: 10,
+    includedIn: ["enterprise"],
+    category: "security"
   }
 ];
 
@@ -67,7 +267,7 @@ const plans: PricingPlan[] = [
     id: "basic",
     name: "Basic",
     description: "Perfect for individuals and small projects",
-    basePrice: 15,
+    basePrice: 19,
     buttonText: "Get Started",
     highlighted: false
   },
@@ -75,7 +275,7 @@ const plans: PricingPlan[] = [
     id: "pro",
     name: "Pro",
     description: "Ideal for professionals and growing businesses",
-    basePrice: 29,
+    basePrice: 49,
     buttonText: "Go Pro",
     highlighted: true
   },
@@ -83,7 +283,7 @@ const plans: PricingPlan[] = [
     id: "enterprise",
     name: "Enterprise",
     description: "For teams and organizations with advanced needs",
-    basePrice: 49,
+    basePrice: 99,
     buttonText: "Contact Sales",
     highlighted: false
   }
@@ -91,8 +291,9 @@ const plans: PricingPlan[] = [
 
 export function PricingSection() {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
-  const [selectedFeatures, setSelectedFeatures] = useState<string[]>(["website-builder"]);
+  const [selectedFeatures, setSelectedFeatures] = useState<string[]>(["website-builder", "templates", "responsive-design"]);
   const [selectedPlan, setSelectedPlan] = useState<string>("pro");
+  const [selectedTab, setSelectedTab] = useState<string>("website");
 
   const handleFeatureToggle = (featureId: string) => {
     setSelectedFeatures((prev) => {
@@ -122,6 +323,9 @@ export function PricingSection() {
 
     return total;
   };
+
+  // Filter features by selected category
+  const filteredFeatures = features.filter(feature => feature.category === selectedTab);
 
   return (
     <section id="pricing" className="py-24 relative overflow-hidden">
@@ -157,34 +361,82 @@ export function PricingSection() {
         </FadeIn>
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12 mb-16">
-          {/* Feature selection */}
+          {/* Feature selection with tabs by category */}
           <FadeIn direction="right" once>
             <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl p-6 md:p-8">
               <h3 className="text-xl font-semibold mb-6">Choose your features</h3>
               
-              <div className="space-y-6">
-                {features.map((feature) => (
-                  <div key={feature.id} className="flex items-start">
-                    <Checkbox
-                      id={feature.id}
-                      checked={selectedFeatures.includes(feature.id)}
-                      onCheckedChange={() => handleFeatureToggle(feature.id)}
-                      className="mt-1"
-                    />
-                    <div className="ml-4">
-                      <label 
-                        htmlFor={feature.id} 
-                        className="font-medium cursor-pointer block mb-1"
+              <Tabs 
+                defaultValue="website" 
+                value={selectedTab}
+                onValueChange={setSelectedTab}
+                className="mb-6"
+              >
+                <TabsList className="grid grid-cols-2 sm:grid-cols-3 gap-1">
+                  {featureCategories.map(category => (
+                    <TabsTrigger
+                      key={category.id}
+                      value={category.id}
+                      className="text-xs sm:text-sm"
+                    >
+                      {category.name}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+
+                {featureCategories.map(category => (
+                  <TabsContent key={category.id} value={category.id} className="mt-6">
+                    <div className="space-y-6">
+                      {filteredFeatures.map((feature) => (
+                        <div key={feature.id} className="flex items-start">
+                          <Checkbox
+                            id={feature.id}
+                            checked={selectedFeatures.includes(feature.id)}
+                            onCheckedChange={() => handleFeatureToggle(feature.id)}
+                            className="mt-1"
+                          />
+                          <div className="ml-4">
+                            <label 
+                              htmlFor={feature.id} 
+                              className="font-medium cursor-pointer block mb-1"
+                            >
+                              {feature.name}
+                              <span className="ml-2 text-sm text-white/50">
+                                +${feature.price}/mo
+                              </span>
+                            </label>
+                            <p className="text-sm text-white/70">{feature.description}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </TabsContent>
+                ))}
+              </Tabs>
+
+              <div className="mt-6 pt-6 border-t border-white/10">
+                <p className="text-sm text-white/70">
+                  <span className="font-semibold text-white">Selected features:</span> {selectedFeatures.length}
+                </p>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {selectedFeatures.map(featureId => {
+                    const feature = features.find(f => f.id === featureId);
+                    return feature ? (
+                      <div 
+                        key={feature.id}
+                        className="bg-white/10 text-xs px-2 py-1 rounded-full flex items-center"
                       >
                         {feature.name}
-                        <span className="ml-2 text-sm text-white/50">
-                          +${feature.price}/mo
-                        </span>
-                      </label>
-                      <p className="text-sm text-white/70">{feature.description}</p>
-                    </div>
-                  </div>
-                ))}
+                        <button 
+                          onClick={() => handleFeatureToggle(feature.id)}
+                          className="ml-1 text-white/70 hover:text-white"
+                        >
+                          ×
+                        </button>
+                      </div>
+                    ) : null;
+                  })}
+                </div>
               </div>
             </div>
           </FadeIn>
@@ -235,30 +487,40 @@ export function PricingSection() {
                     </div>
 
                     <div className="mt-4 pt-4 border-t border-white/10">
-                      <ul className="space-y-2 text-sm">
-                        {features.map(feature => {
-                          const included = feature.includedIn.includes(plan.id as any);
-                          const selected = selectedFeatures.includes(feature.id);
+                      <div className="mb-4">
+                        <span className="text-sm font-medium">Includes features you selected:</span>
+                      </div>
+                      <ul className="space-y-2 text-sm max-h-48 overflow-y-auto pr-2 scrollbar-thin">
+                        {selectedFeatures.map(featureId => {
+                          const feature = features.find(f => f.id === featureId);
+                          const included = feature?.includedIn.includes(plan.id as any);
+                          
+                          if (!feature) return null;
                           
                           return (
                             <li 
                               key={feature.id} 
                               className={`flex items-center ${
-                                included || selected ? "text-white/90" : "text-white/40 line-through"
+                                included ? "text-white/90" : "text-white/40"
                               }`}
                             >
                               <svg 
                                 className={`w-4 h-4 mr-2 ${
-                                  included || selected ? "text-green-500" : "text-white/40"
+                                  included ? "text-green-500" : "text-white/40"
                                 }`} 
                                 fill="none" 
                                 stroke="currentColor" 
                                 viewBox="0 0 24 24" 
                                 xmlns="http://www.w3.org/2000/svg"
                               >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={included ? "M5 13l4 4L19 7" : "M6 18L18 6M6 6l12 12"} />
                               </svg>
                               {feature.name}
+                              {!included && (
+                                <span className="ml-1 text-xs text-white/60">
+                                  (+${feature.price}/mo)
+                                </span>
+                              )}
                             </li>
                           );
                         })}

@@ -96,7 +96,7 @@ export function HeroSection() {
         />
       </div>
 
-      <Container className="relative z-10 py-20">
+      <Container className="relative z-10 py-10">
         <div className="max-w-5xl mx-auto text-center">
           <FadeIn>
             <motion.div 
@@ -109,17 +109,19 @@ export function HeroSection() {
             </motion.div>
           </FadeIn>
 
-          <AnimatedText
-            text="Build Anything with Fewzon"
-            className="text-5xl md:text-6xl lg:text-7xl font-bold text-gradient glow leading-tight mb-6"
-            delay={0.2}
-          />
+          <motion.div className="mb-12">
+            <AnimatedText
+              text="Don't wait for the future. Build it with Fewzon."
+              className="text-5xl md:text-6xl lg:text-7xl font-bold text-gradient glow leading-tight mb-6"
+              delay={0.2}
+            />
 
-          <FadeIn delay={0.4} direction="up">
-            <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto">
-              Website Builder, Graphic Editor, and everything you need to create beautiful digital experiences without code.
-            </p>
-          </FadeIn>
+            <FadeIn delay={0.4} direction="up">
+              <p className="text-xl text-white/80 max-w-2xl mx-auto">
+                Website Builder, Graphic Editor, and everything you need to create beautiful digital experiences without code.
+              </p>
+            </FadeIn>
+          </motion.div>
 
           <FadeIn delay={0.6} direction="up">
             <div className="max-w-3xl mx-auto mb-16">
