@@ -40,7 +40,17 @@ export function HeroSection() {
   const [prompt, setPrompt] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const { toast } = useToast();
+
+  // Track cursor position for the spotlight effect
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setCursorPosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  };
 
   const handleGenerate = () => {
     if (!prompt.trim()) {
@@ -104,7 +114,7 @@ export function HeroSection() {
       </div>
 
       <Container className="relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
           {/* Early Access Badge */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -131,7 +141,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-6xl font-bold text-gradient leading-tight mb-5"
+            className="text-5xl md:text-7xl font-bold text-gradient leading-tight mb-5"
           >
             Build something <span className="text-gradient glow">Lovable</span>
           </motion.h1>
@@ -145,27 +155,63 @@ export function HeroSection() {
             Idea to app in seconds, with your personal full stack engineer
           </motion.p>
           
-          {/* Main Input Box - Styled similarly to Lovable's clean, minimal design */}
+          {/* Enhanced Creative Input Box */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mb-8"
           >
-            <div className="relative p-[1px] rounded-xl bg-gradient-to-r from-white/20 via-white/10 to-white/20 shadow-lg">
-              <div className="bg-white/5 backdrop-blur-md rounded-xl overflow-hidden">
+            <div 
+              className="relative p-[2px] rounded-2xl overflow-hidden"
+              onMouseMove={handleMouseMove}
+              style={{
+                background: "linear-gradient(90deg, #9b87f5 0%, #33C3F0 50%, #FF4545 100%)",
+                boxShadow: "0 0 25px rgba(155, 135, 245, 0.5)"
+              }}
+            >
+              {/* Interactive spotlight effect */}
+              <div 
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: `radial-gradient(circle 100px at ${cursorPosition.x}px ${cursorPosition.y}px, rgba(255, 255, 255, 0.2), transparent)`,
+                  opacity: isFocused ? 1 : 0.3,
+                  transition: "opacity 0.3s ease"
+                }}
+              />
+              
+              <div className="bg-black/60 backdrop-blur-md rounded-2xl overflow-hidden">
                 <div className="relative flex flex-col">
+                  <div className="flex items-center p-3 border-b border-white/10">
+                    <div className="flex space-x-1.5">
+                      <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                      <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                      <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                    </div>
+                    <div className="ml-auto text-xs text-white/50">// fewzon_prompt.js</div>
+                  </div>
+                  
                   <textarea
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
-                    placeholder="Ask Fewzon to create a prototype..."
-                    rows={5}
-                    className="w-full bg-transparent border-0 p-5 text-lg text-white placeholder:text-white/50 focus:ring-0 resize-none"
+                    placeholder="// Ask Fewzon to create something amazing...
+                    
+const myIdea = {
+  type: 'web app',
+  description: 'A markdown editor with AI assistant',
+  features: ['Collaborative editing', 'Version history', 'Export to PDF']
+};"
+                    rows={9}
+                    className="w-full bg-transparent border-0 p-5 text-lg text-white leading-relaxed font-mono placeholder:text-white/40 focus:ring-0 resize-none"
+                    style={{
+                      caretColor: "#9b87f5",
+                      textShadow: isFocused ? "0 0 8px rgba(155, 135, 245, 0.3)" : "none"
+                    }}
                   />
                   
-                  <div className="flex items-center justify-between p-3 border-t border-white/10 bg-white/5">
+                  <div className="flex items-center justify-between p-4 border-t border-white/10 bg-white/5">
                     <div>
                       <Button 
                         variant="ghost" 
@@ -193,17 +239,25 @@ export function HeroSection() {
                       <Button
                         onClick={handleGenerate}
                         disabled={isGenerating}
-                        className="bg-gradient-to-r from-bluepill to-redpill hover:opacity-90"
+                        className="relative bg-gradient-to-r from-bluepill to-redpill hover:opacity-90 overflow-hidden group"
                       >
-                        {isGenerating ? (
-                          <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                            className="w-5 h-5 border-2 border-t-white border-white/30 rounded-full"
-                          />
-                        ) : (
-                          "Generate"
-                        )}
+                        <span className="relative z-10">
+                          {isGenerating ? (
+                            <motion.div
+                              animate={{ rotate: 360 }}
+                              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                              className="w-5 h-5 border-2 border-t-white border-white/30 rounded-full"
+                            />
+                          ) : (
+                            "Generate"
+                          )}
+                        </span>
+                        <motion.div 
+                          className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100"
+                          initial={{ x: "-100%" }}
+                          whileHover={{ x: "100%" }}
+                          transition={{ duration: 0.8, ease: "easeInOut" }}
+                        />
                       </Button>
                     </div>
                   </div>
