@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { Attach } from "lucide-react";
+import { PaperClip } from "lucide-react";
 
 interface Pill {
   id: string;
@@ -172,7 +171,7 @@ export function HeroSection() {
                         size="sm"
                         className="text-white/70 hover:text-white hover:bg-white/10"
                       >
-                        <Attach className="h-5 w-5 mr-1" /> Attach
+                        <PaperClip className="h-5 w-5 mr-1" /> Attach
                       </Button>
                     </div>
                     
