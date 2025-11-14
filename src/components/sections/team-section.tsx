@@ -22,6 +22,54 @@ const team = [
     role: "Head of Design",
     bio: "Award-winning brand & product designer",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=256&auto=format&fit=crop"
+  },
+  {
+    name: "Robert Martinez",
+    role: "Head of Engineering",
+    bio: "Full-stack expert with 12+ years experience",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&auto=format&fit=crop"
+  },
+  {
+    name: "Sarah Williams",
+    role: "Product Manager",
+    bio: "Product strategy and user research specialist",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=256&auto=format&fit=crop"
+  },
+  {
+    name: "James Anderson",
+    role: "Lead Developer",
+    bio: "Backend architecture and system design expert",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop"
+  },
+  {
+    name: "Emily Davis",
+    role: "UX Designer",
+    bio: "Creating intuitive user experiences",
+    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=256&auto=format&fit=crop"
+  },
+  {
+    name: "Michael Brown",
+    role: "Marketing Director",
+    bio: "Growth marketing and brand strategy leader",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=256&auto=format&fit=crop"
+  },
+  {
+    name: "Jennifer Taylor",
+    role: "Customer Success",
+    bio: "Ensuring customer satisfaction and retention",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop"
+  },
+  {
+    name: "David Wilson",
+    role: "DevOps Engineer",
+    bio: "Infrastructure and cloud architecture specialist",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&auto=format&fit=crop"
+  },
+  {
+    name: "Lisa Thompson",
+    role: "Content Strategist",
+    bio: "Crafting compelling narratives and content",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop"
   }
 ];
 
