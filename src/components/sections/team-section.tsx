@@ -5,75 +5,38 @@ import { AnimatedText } from "@/components/animations/animated-text";
 import { Linkedin, Twitter, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback } from "react";
+import cmo from "@/assets/safikul alam.jpeg"
+import ceo from "@/assets/subster paudel.jpeg"
+import cto from "@/assets/AAA.png"
+import app from "@/assets/shahnawaz alam.jpeg"
 
 const team = [
+  
   {
-    name: "Alexandra Chen",
-    role: "CEO & Founder",
-    bio: "15+ years in UI/UX, leading design innovation",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=256&auto=format&fit=crop"
-  },
-  {
-    name: "Marcus Johnson",
-    role: "CTO",
+    name: "Shahanawaz Alam",
+    role: "COO",
     bio: "Engineering leader from Silicon Valley",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=256&auto=format&fit=crop"
+    image: app
   },
   {
-    name: "Diana Lopez",
-    role: "Head of Design",
+    name: "Abhaya Gautam",
+    role: "CTO",
     bio: "Award-winning brand & product designer",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=256&auto=format&fit=crop"
+    image: cto
   },
   {
-    name: "Robert Martinez",
-    role: "Head of Engineering",
+    name: "Safikul Alam",
+    role: "CMO",
     bio: "Full-stack expert with 12+ years experience",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=256&auto=format&fit=crop"
+    image: cmo
   },
   {
-    name: "Sarah Williams",
-    role: "Product Manager",
-    bio: "Product strategy and user research specialist",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=256&auto=format&fit=crop"
+    name: "Subster Paudel",
+    role: "CEO",
+    bio: "15+ years in UI/UX, leading design innovation",
+    image: ceo  // ✅ use the imported variable
   },
-  {
-    name: "James Anderson",
-    role: "Lead Developer",
-    bio: "Backend architecture and system design expert",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop"
-  },
-  {
-    name: "Emily Davis",
-    role: "UX Designer",
-    bio: "Creating intuitive user experiences",
-    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=256&auto=format&fit=crop"
-  },
-  {
-    name: "Michael Brown",
-    role: "Marketing Director",
-    bio: "Growth marketing and brand strategy leader",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=256&auto=format&fit=crop"
-  },
-  {
-    name: "Jennifer Taylor",
-    role: "Customer Success",
-    bio: "Ensuring customer satisfaction and retention",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop"
-  },
-  {
-    name: "David Wilson",
-    role: "DevOps Engineer",
-    bio: "Infrastructure and cloud architecture specialist",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&auto=format&fit=crop"
-  },
-  {
-    name: "Lisa Thompson",
-    role: "Content Strategist",
-    bio: "Crafting compelling narratives and content",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop"
-  }
-];
+ ];
 
 export function TeamSection() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
