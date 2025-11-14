@@ -25,7 +25,7 @@ const blogPosts: BlogPost[] = [
     author: "Sarah Johnson",
     date: "May 10, 2025",
     category: "Startup",
-    imageUrl: "https://via.placeholder.com/600x400"
+    imageUrl: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=800&auto=format&fit=crop"
   },
   {
     id: 2,
@@ -34,7 +34,7 @@ const blogPosts: BlogPost[] = [
     author: "Michael Chen",
     date: "May 8, 2025",
     category: "Career Development",
-    imageUrl: "https://via.placeholder.com/600x400"
+    imageUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop"
   },
   {
     id: 3,
@@ -43,7 +43,34 @@ const blogPosts: BlogPost[] = [
     author: "Alex Rivera",
     date: "May 5, 2025",
     category: "Technology",
-    imageUrl: "https://via.placeholder.com/600x400"
+    imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 4,
+    title: "Mastering Design Systems for Scalable Products",
+    description: "Build consistent, maintainable design systems that scale with your product growth.",
+    author: "Emma Wilson",
+    date: "May 3, 2025",
+    category: "Design",
+    imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 5,
+    title: "The Ultimate Guide to User Experience Research",
+    description: "Discover proven methods to understand your users and create products they love.",
+    author: "David Lee",
+    date: "April 28, 2025",
+    category: "UX Research",
+    imageUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    id: 6,
+    title: "Building a Successful Remote Team Culture",
+    description: "Learn strategies to foster collaboration and productivity in distributed teams.",
+    author: "Rachel Green",
+    date: "April 25, 2025",
+    category: "Management",
+    imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop"
   }
 ];
 
