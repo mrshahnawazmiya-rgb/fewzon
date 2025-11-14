@@ -15,25 +15,25 @@ const team = [
   {
     name: "Shahanawaz Alam",
     role: "COO",
-    bio: "Engineering leader from Silicon Valley",
+    bio: "",
     image: app
   },
   {
     name: "Abhaya Gautam",
     role: "CTO",
-    bio: "Award-winning brand & product designer",
+    bio: "",
     image: cto
   },
   {
     name: "Safikul Alam",
     role: "CMO",
-    bio: "Full-stack expert with 12+ years experience",
+    bio: "",
     image: cmo
   },
   {
     name: "Subster Paudel",
     role: "CEO",
-    bio: "15+ years in UI/UX, leading design innovation",
+    bio: "",
     image: ceo  // ✅ use the imported variable
   },
  ];
